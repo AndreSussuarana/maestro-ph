@@ -1,0 +1,12 @@
+# Pastas de ambiente e caches
+.venv/
+__pycache__/
+.vscode/
+
+# Executáveis e arquivos de build
+*.exe
+*.log
+*.pyc
+
+# Arquivos de sistema
+.DS_Store
