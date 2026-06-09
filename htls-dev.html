@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de pH - Semana do Meio Ambiente</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #333; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; }
+        .upload-area { border: 2px dashed #3498db; padding: 20px; border-radius: 8px; margin-bottom: 20px; background-color: #ebf5fb; }
+        .btn-analisar { background-color: #27ae60; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn-analisar:disabled { background-color: #95a5a6; }
+        .alerta-erro { background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 6px; margin-top: 15px; display: none; border: 1px solid #f5c6cb; }
+        .area-resultado { margin-top: 25px; display: none; text-align: left; }
+        .ph-destaque { font-size: 28px; color: #2980b9; text-align: center; margin-bottom: 20px; background: #e1f5fe; padding: 10px; border-radius: 8px; }
+        .historico-lista { list-style: none; padding: 0; }
+        .historico-lista li { background: #ecf0f1; margin: 5px 0; padding: 10px; border-radius: 4px; border-left: 5px solid #bdc3c7; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Leitor de pH por Imagem</h2>
+    <div class="upload-area">
+        <label for="fotoFita"><strong>Selecione a imagem da fita:</strong></label><br>
+        <input type="file" id="fotoFita" accept="image/*">
+    </div>
+
+    <button id="btnAnalisar" class="btn-analisar" onclick="enviarParaAPI()">Analisar pH</button>
+
+    <div id="mensagemErro" class="alerta-erro">
+        <strong>Ops!</strong> <span id="textoErro"></span>
+    </div>
+
+    <div class="area-resultado" id="areaResultado" style="display:none;">
+        <div class="ph-destaque">
+            <div id="textoSemantico" style="font-size: 32px; margin-bottom: 10px; font-weight: bold;"></div>
+            
+            <strong>RESULTADO TÉCNICO (pH):</strong> 
+            <span id="valorPhDinâmico" style="font-size: 24px; color: #555;">--</span>
+        </div>
+        
+        <h3>Escala Gerada pelo C#:</h3>
+        <ul id="listaHistoricoCorrigida" class="historico-lista"></ul>
+    </div>
+</div>
+
+<script>
+    async function enviarParaAPI() {
+        const input = document.getElementById('fotoFita');
+        const btn = document.getElementById('btnAnalisar');
+        const areaErro = document.getElementById('mensagemErro');
+        const areaResultado = document.getElementById('areaResultado');
+
+        // Limpa erros anteriores e esconde resultados antigos
+        areaErro.style.display = 'none';
+        areaResultado.style.display = 'none';
+
+        if (!input.files[0]) {
+            alert("Selecione uma imagem primeiro!");
+            return;
+        }
+
+        btn.innerText = "Processando no C#...";
+        btn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("file", input.files[0]);
+
+        try {
+            const resposta = await fetch("http://localhost:8000/calcular-ph-real", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!resposta.ok) throw new Error("Servidor offline ou erro no processamento.");
+
+            const dados = await resposta.json();
+            
+            // AQUI ESTÁ O ENCAIXE: Chamamos a função de exibir passando os dados da API
+            exibirResultadosNaTela(dados);
+
+        } catch (erro) {
+            document.getElementById('textoErro').innerText = erro.message;
+            areaErro.style.display = 'block';
+        } finally {
+            btn.innerText = "Analisar pH";
+            btn.disabled = false;
+        }
+    }
+
+    // Função que desenha tudo na tela
+    function exibirResultadosNaTela(dados) {
+        console.log("Dados que chegaram no JS:", dados);
+        
+        const area = document.getElementById('areaResultado');
+        const displayPh = document.getElementById('valorPhDinâmico');
+        const listaUl = document.getElementById('listaHistoricoCorrigida');
+        
+        const displaySemantico = document.getElementById('textoSemantico');
+
+        // 1. Mostra o container principal
+        area.style.display = 'block';
+
+        // 2. Atualiza o número grande do pH
+        displayPh.innerText = dados.ph_detectado;
+        
+        displaySemantico.innerText = dados.resultado_semantico;
+
+        if(dados.resultado_semantico.includes("Ácido")) displaySemantico.style.color = "#e74c3c";
+        else if(dados.resultado_semantico === "Neutro") displaySemantico.style.color = "#27ae60";
+        else displaySemantico.style.color = "#3498db";
+        // 3. Limpa e reconstrói a lista do C#
+        listaUl.innerHTML = "";
+        dados.escala_ordenada.forEach((valor, index) => {
+            const li = document.createElement('li');
+            li.style.padding = "10px";
+            li.style.borderBottom = "1px solid #ddd";
+            li.innerText = "Nível: " + valor;
+
+            // Se for o neutro que o C# encontrou, pinta de verde
+            if (index === dados.posicao_do_neutro_no_ranking) {
+                li.style.backgroundColor = "#d4efdf";
+                li.style.borderLeft = "5px solid #27ae60";
+                li.innerText += " <-- PONTO NEUTRO";
+            }
+            listaUl.appendChild(li);
+        });
+
+        // Rola a página suavemente para o resultado
+        area.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
