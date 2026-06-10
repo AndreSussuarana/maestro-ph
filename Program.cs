@@ -96,23 +96,23 @@ namespace MaestroPH
             
             
             // ÁCIDOS: Vermelho (R) forte, Azul (B) baixo
-            { 0, new Cor[] { new Cor { R=240, G=10, B=20 }, new Cor { R=250, G=90, B=20 }, new Cor { R=255, G=180, B=20 }, new Cor { R=210, G=30, B=20 } }},
-            { 1, new Cor[] { new Cor { R=135, G=94, B=68 }, new Cor { R=141, G=121, B=70 }, new Cor { R=147, G=134, B=104 }, new Cor { R=95, G=66, B=108 } }},
-            { 2, new Cor[] { new Cor { R=225, G=30, B=30 }, new Cor { R=230, G=115, B=30 }, new Cor { R=230, G=140, B=40 }, new Cor { R=190, G=50, B=35 } }},
+            { 0, new Cor[] { new Cor { R=152, G=100, B=78 }, new Cor { R=145, G=126, B=62 }, new Cor { R=155, G=141, B=100 }, new Cor { R=103, G=60, B=114 } }},
+            { 1, new Cor[] { new Cor { R=145, G=94, B=68 }, new Cor { R=141, G=121, B=70 }, new Cor { R=147, G=134, B=104 }, new Cor { R=95, G=66, B=108 } }},
+            { 2, new Cor[] { new Cor { R=138, G=64, B=50 }, new Cor { R=138, G=98, B=78 }, new Cor { R=139, G=104, B=72 }, new Cor { R=87, G=52, B=76 } }},
             { 3, new Cor[] { new Cor { R=131, G=91, B=91 }, new Cor { R=133, G=116, B=86 }, new Cor { R=132, G=120, B=105 }, new Cor { R=103, G=77, B=102 } }},
-            { 4, new Cor[] { new Cor { R=200, G=80, B=55 }, new Cor { R=205, G=150, B=55 }, new Cor { R=200, G=100, B=60 }, new Cor { R=170, G=80, B=60 } }},
+            { 4, new Cor[] { new Cor { R=122, G=70, B=72 }, new Cor { R=131, G=111, B=52 }, new Cor { R=124, G=113, B=83 }, new Cor { R=119, G=85, B=72 } }},
             
-            { 5, new Cor[] { new Cor { R=180, G=120, B=75 }, new Cor { R=190, G=170, B=70 }, new Cor { R=180, G=80, B=70 }, new Cor { R=160, G=100, B=70 } }},
-            { 6, new Cor[] { new Cor { R=160, G=150, B=90 }, new Cor { R=160, G=180, B=90 }, new Cor { R=140, G=60, B=90 }, new Cor { R=150, G=130, B=80 } }},
-            { 7, new Cor[] { new Cor { R=120, G=180, B=110 }, new Cor { R=110, G=180, B=130 }, new Cor { R=100, G=40, B=110 }, new Cor { R=110, G=170, B=120 } }},
+            { 5, new Cor[] { new Cor { R=123, G=70, B=72 }, new Cor { R=138, G=106, B=57 }, new Cor { R=104, G=103, B=83 }, new Cor { R=149, G=116, B=82 } }},
+            { 6, new Cor[] { new Cor { R=114, G=66, B=69 }, new Cor { R=130, G=99, B=57 }, new Cor { R=86, G=94, B=84 }, new Cor { R=136, G=105, B=72 } }},
+            { 7, new Cor[] { new Cor { R=117, G=73, B=82 }, new Cor { R=138, G=104, B=63 }, new Cor { R=74, G=91, B=98 }, new Cor { R=143, G=120, B=82 } }},
 
             { 8, new Cor[] { new Cor { R=133, G=70, B=70 }, new Cor { R=137, G=110, B=70 }, new Cor { R=48, G=85, B=104 }, new Cor { R=135, G=103, B=52 } }},
-            { 9, new Cor[] { new Cor { R=120, G=60, B=85 }, new Cor { R=125, G=95, B=85 }, new Cor { R=20, G=50, B=130 }, new Cor { R=120, G=90, B=65 } }},
-            { 10, new Cor[] { new Cor { R=105, G=50, B=100 }, new Cor { R=110, G=80, B=100 }, new Cor { R=0, G=20, B=160 }, new Cor { R=105, G=75, B=80 } }},
-            { 11, new Cor[] { new Cor { R=90, G=40, B=115 }, new Cor { R=95, G=65, B=115 }, new Cor { R=0, G=0, B=190 }, new Cor { R=90, G=60, B=95 } }},
-            { 12, new Cor[] { new Cor { R=75, G=30, B=130 }, new Cor { R=70, G=40, B=130 }, new Cor { R=0, G=0, B=220 }, new Cor { R=75, G=45, B=110 } }},
-            { 13, new Cor[] { new Cor { R=60, G=20, B=145 }, new Cor { R=45, G=15, B=145 }, new Cor { R=0, G=0, B=250 }, new Cor { R=60, G=30, B=125 } }},
-            { 14, new Cor[] { new Cor { R=45, G=10, B=160 }, new Cor { R=20, G=0, B=160 }, new Cor { R=0, G=0, B=255 }, new Cor { R=45, G=15, B=140 } }},
+            { 9, new Cor[] { new Cor { R=111, G=77, B=87 }, new Cor { R=143, G=104, B=81 }, new Cor { R=66, G=94, B=117 }, new Cor { R=149, G=108, B=68 } }},
+            { 10, new Cor[] { new Cor { R=105, G=73, B=79 }, new Cor { R=119, G=85, B=82 }, new Cor { R=66, G=93, B=102 }, new Cor { R=161, G=120, B=73 } }},
+            { 11, new Cor[] { new Cor { R=104, G=68, B=70 }, new Cor { R=95, G=66, B=84 }, new Cor { R=65, G=93, B=107 }, new Cor { R=173, G=132, B=77 } }},
+            { 12, new Cor[] { new Cor { R=80, G=54, B=66 }, new Cor { R=93, G=62, B=83 }, new Cor { R=63, G=89, B=101 }, new Cor { R=172, G=126, B=68 } }},
+            { 13, new Cor[] { new Cor { R=73, G=59, B=69 }, new Cor { R=93, G=63, B=82 }, new Cor { R=64, G=88, B=100 }, new Cor { R=176, G=122, B=65 } }},
+            { 14, new Cor[] { new Cor { R=59, G=53, B=66 }, new Cor { R=94, G=68, B=80 }, new Cor { R=54, G=80, B=92 }, new Cor { R=144, G=83, B=27 } }},
             };
             
                     // ... Complete aqui do pH 0 ao 14 conforme os quadradinhos da foto
